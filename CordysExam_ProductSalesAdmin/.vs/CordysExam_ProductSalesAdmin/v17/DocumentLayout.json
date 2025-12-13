@@ -1,0 +1,44 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D017B265-47AC-4042-9B5B-A40472E4B26D}|CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin.csproj|c:\\source\\cordysexam_localapp\\cordysexam_productsalesadmin\\cordysexam_productsalesadmin\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D017B265-47AC-4042-9B5B-A40472E4B26D}|CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin.csproj|solutionrelative:cordysexam_productsalesadmin\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\Form1.cs",
+              "RelativeDocumentMoniker": "CordysExam_ProductSalesAdmin\\Form1.cs",
+              "ToolTip": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\Form1.cs [Design]",
+              "RelativeToolTip": "CordysExam_ProductSalesAdmin\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T10:38:29.051Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
