@@ -111,7 +111,8 @@
             // 
             // btnDeleteProduct
             // 
-            btnDeleteProduct.Location = new Point(165, 3);
+            btnDeleteProduct.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDeleteProduct.Location = new Point(963, 3);
             btnDeleteProduct.Name = "btnDeleteProduct";
             btnDeleteProduct.Size = new Size(75, 23);
             btnDeleteProduct.TabIndex = 2;
@@ -142,6 +143,7 @@
             // productsGrid
             // 
             productsGrid.AllowUserToAddRows = false;
+            productsGrid.AllowUserToDeleteRows = false;
             productsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productsGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productsGrid.Dock = DockStyle.Fill;
@@ -152,6 +154,7 @@
             productsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             productsGrid.Size = new Size(1043, 416);
             productsGrid.TabIndex = 1;
+            productsGrid.CellDoubleClick += productsGrid_CellDoubleClick;
             // 
             // tabSales
             // 
@@ -190,7 +193,8 @@
             // 
             // btnDeleteSale
             // 
-            btnDeleteSale.Location = new Point(165, 3);
+            btnDeleteSale.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDeleteSale.Location = new Point(963, 3);
             btnDeleteSale.Name = "btnDeleteSale";
             btnDeleteSale.Size = new Size(75, 23);
             btnDeleteSale.TabIndex = 2;
@@ -221,6 +225,7 @@
             // salesGrid
             // 
             salesGrid.AllowUserToAddRows = false;
+            salesGrid.AllowUserToDeleteRows = false;
             salesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             salesGrid.Dock = DockStyle.Fill;
@@ -231,6 +236,7 @@
             salesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             salesGrid.Size = new Size(1043, 416);
             salesGrid.TabIndex = 1;
+            salesGrid.CellDoubleClick += salesGrid_CellDoubleClick;
             // 
             // tabStores
             // 
@@ -238,6 +244,7 @@
             tabStores.Controls.Add(storesGrid);
             tabStores.Location = new Point(4, 24);
             tabStores.Name = "tabStores";
+            tabStores.Padding = new Padding(3);
             tabStores.Size = new Size(1049, 422);
             tabStores.TabIndex = 2;
             tabStores.Text = "Stores";
@@ -251,9 +258,9 @@
             panel1.Controls.Add(btnEditStore);
             panel1.Controls.Add(btnAddStore);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 393);
+            panel1.Location = new Point(3, 390);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1049, 29);
+            panel1.Size = new Size(1043, 29);
             panel1.TabIndex = 3;
             // 
             // btnRefreshStores
@@ -268,7 +275,8 @@
             // 
             // btnDeleteStore
             // 
-            btnDeleteStore.Location = new Point(165, 3);
+            btnDeleteStore.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDeleteStore.Location = new Point(963, 3);
             btnDeleteStore.Name = "btnDeleteStore";
             btnDeleteStore.Size = new Size(75, 23);
             btnDeleteStore.TabIndex = 2;
@@ -299,16 +307,18 @@
             // storesGrid
             // 
             storesGrid.AllowUserToAddRows = false;
+            storesGrid.AllowUserToDeleteRows = false;
             storesGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             storesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             storesGrid.Dock = DockStyle.Fill;
-            storesGrid.Location = new Point(0, 0);
+            storesGrid.Location = new Point(3, 3);
             storesGrid.MultiSelect = false;
             storesGrid.Name = "storesGrid";
             storesGrid.ReadOnly = true;
             storesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            storesGrid.Size = new Size(1049, 422);
+            storesGrid.Size = new Size(1043, 416);
             storesGrid.TabIndex = 1;
+            storesGrid.CellDoubleClick += storesGrid_CellDoubleClick;
             // 
             // MainForm
             // 

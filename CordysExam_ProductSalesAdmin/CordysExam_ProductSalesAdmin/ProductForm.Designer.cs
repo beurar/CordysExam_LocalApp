@@ -49,13 +49,13 @@
             // 
             txtName.Location = new Point(12, 27);
             txtName.Name = "txtName";
-            txtName.Size = new Size(229, 23);
+            txtName.Size = new Size(201, 23);
             txtName.TabIndex = 1;
             // 
             // lblPrice
             // 
             lblPrice.AutoSize = true;
-            lblPrice.Location = new Point(12, 69);
+            lblPrice.Location = new Point(12, 57);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(36, 15);
             lblPrice.TabIndex = 2;
@@ -63,15 +63,15 @@
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(12, 87);
+            txtPrice.Location = new Point(12, 75);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(229, 23);
+            txtPrice.Size = new Size(201, 23);
             txtPrice.TabIndex = 3;
             // 
             // btnSave
             // 
             btnSave.DialogResult = DialogResult.OK;
-            btnSave.Location = new Point(20, 251);
+            btnSave.Location = new Point(12, 220);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(75, 23);
             btnSave.TabIndex = 4;
@@ -82,7 +82,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(363, 214);
+            btnCancel.Location = new Point(138, 220);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(225, 254);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(txtPrice);
@@ -103,7 +103,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "ProductForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Edit Product";
+            Text = "Product";
             ResumeLayout(false);
             PerformLayout();
         }

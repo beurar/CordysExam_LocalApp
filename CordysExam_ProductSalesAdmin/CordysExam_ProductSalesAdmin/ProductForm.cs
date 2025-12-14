@@ -20,12 +20,14 @@ namespace CordysExam_ProductSalesAdmin
         {
             InitializeComponent();
             Product = new Product();
+            this.Text = "New Product";
         }
 
         public ProductForm(Product product)
         {
             InitializeComponent();
             Product = product;
+            this.Text = "Edit Product";
 
             txtName.Text = product.Description;
             txtPrice.Text = product.Price.ToString();

@@ -36,6 +36,9 @@
             txtName = new TextBox();
             btnCancel = new Button();
             btnSave = new Button();
+            panel1 = new Panel();
+            label4 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label3
@@ -71,6 +74,7 @@
             txtTel.Name = "txtTel";
             txtTel.Size = new Size(200, 23);
             txtTel.TabIndex = 12;
+            txtTel.KeyPress += txtTel_KeyPress;
             // 
             // txtAddress
             // 
@@ -107,11 +111,30 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(label4);
+            panel1.Location = new Point(13, 152);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(199, 39);
+            panel1.TabIndex = 17;
+            // 
+            // label4
+            // 
+            label4.Dock = DockStyle.Fill;
+            label4.ForeColor = SystemColors.ControlDarkDark;
+            label4.Location = new Point(0, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(199, 39);
+            label4.TabIndex = 0;
+            label4.Text = "Only numbers and applicable characters are allowed.";
+            // 
             // StoreForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(225, 254);
+            Controls.Add(panel1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -122,7 +145,9 @@
             Controls.Add(btnSave);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "StoreForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Store";
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -137,5 +162,7 @@
         private TextBox txtName;
         private Button btnCancel;
         private Button btnSave;
+        private Panel panel1;
+        private Label label4;
     }
 }

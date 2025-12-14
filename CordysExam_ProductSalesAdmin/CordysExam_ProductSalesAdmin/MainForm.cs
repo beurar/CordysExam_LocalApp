@@ -142,12 +142,18 @@ namespace CordysExam_ProductSalesAdmin
             // Fill Product & Store columns
             salesGrid.CellFormatting += (s, e) =>
             {
+                if (e.RowIndex < 0) return; // skip header
+
+                var row = salesGrid.Rows[e.RowIndex].DataBoundItem as ProductSale;
+                if (row == null) return;
+
                 if (salesGrid.Columns[e.ColumnIndex].HeaderText == "Product")
-                    e.Value = salesList[e.RowIndex].Product.Description;
+                    e.Value = row.Product.Description;
 
                 if (salesGrid.Columns[e.ColumnIndex].HeaderText == "Store")
-                    e.Value = salesList[e.RowIndex].Store.Name;
+                    e.Value = row.Store.Name;
             };
+
         }
 
 
@@ -284,20 +290,36 @@ namespace CordysExam_ProductSalesAdmin
             }
 
             var store = (Store)storesGrid.CurrentRow.DataBoundItem;
+
+            using var db = new AppDbContext();
+            bool hasSales = db.ProductSales.Any(s => s.StoreId == store.StoreId);
+
+            if (hasSales)
+            {
+                MessageBox.Show(
+                    "Cannot delete this store because it has sales records.",
+                    "Attention",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
             var confirm = MessageBox.Show(
                 "Are you sure you want to delete this store?",
                 "Confirm Delete",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+                MessageBoxIcon.Warning
+            );
 
             if (confirm == DialogResult.Yes)
             {
-                using var db = new AppDbContext();
                 db.Stores.Remove(store);
                 db.SaveChanges();
                 LoadStores();
             }
         }
+
 
         private void btnRefreshStores_Click(object sender, EventArgs e)
         {
@@ -328,21 +350,39 @@ namespace CordysExam_ProductSalesAdmin
                 return;
             }
 
-            var sale = (ProductSale)salesGrid.CurrentRow.DataBoundItem;
+            // Get the selected sale's ID
+            var selectedSale = (ProductSale)salesGrid.CurrentRow.DataBoundItem;
+            int saleId = selectedSale.SaleId;
+
+            // Open the edit form
+            using var db = new AppDbContext();
+            var sale = db.ProductSales
+                         .Include(s => s.Product)
+                         .Include(s => s.Store)
+                         .FirstOrDefault(s => s.SaleId == saleId);
+
+            if (sale == null)
+            {
+                MessageBox.Show("Sale not found in the database.");
+                return;
+            }
+
             var form = new SaleForm(sale);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                using var db = new AppDbContext();
-
-                // Attach the edited entity and mark as modified
-                db.ProductSales.Attach(form.ProductSale);
-                db.Entry(form.ProductSale).State = EntityState.Modified;
+                // Update the sale entity with new values
+                sale.ProductId = form.ProductSale.ProductId;
+                sale.StoreId = form.ProductSale.StoreId;
+                sale.SaleDate = form.ProductSale.SaleDate;
+                sale.Quantity = form.ProductSale.Quantity;
 
                 db.SaveChanges();
+
                 LoadSales();
             }
         }
+
 
 
         private void btnDeleteSale_Click(object sender, EventArgs e)
@@ -375,5 +415,28 @@ namespace CordysExam_ProductSalesAdmin
         }
 
         #endregion
+
+        #region Double-Clicks
+
+        private void productsGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return; // clicked header
+            btnEditProduct_Click(sender, EventArgs.Empty); // always edit the clicked row
+        }
+
+        private void storesGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            btnEditStore_Click(sender, EventArgs.Empty);
+        }
+
+        private void salesGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            btnEditSale_Click(sender, EventArgs.Empty);
+        }
+
+        #endregion
+
     }
 }

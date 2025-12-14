@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CordysExam_ProductSalesAdmin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d68c928e695cc43f82b09d3332906c30998a9088")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19f81ffe02a19bc28c63ded8b4ca99d4ee79aee2")]
 [assembly: System.Reflection.AssemblyProductAttribute("CordysExam_ProductSalesAdmin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CordysExam_ProductSalesAdmin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

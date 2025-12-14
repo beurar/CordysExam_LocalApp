@@ -147,6 +147,7 @@
             Controls.Add(btnSave);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "SaleForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Sale";
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             ResumeLayout(false);
