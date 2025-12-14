@@ -121,3 +121,5 @@ C:\Source\CordysExam_LocalApp\CordysExam_ProductSalesAdmin\CordysExam_ProductSal
 C:\Source\CordysExam_LocalApp\CordysExam_ProductSalesAdmin\CordysExam_ProductSalesAdmin\obj\Debug\net8.0-windows\CordysExam_ProductSalesAdmin.MainForm.resources
 C:\Source\CordysExam_LocalApp\CordysExam_ProductSalesAdmin\CordysExam_ProductSalesAdmin\obj\Debug\net8.0-windows\CordysExam_ProductSalesAdmin.ProductForm.resources
 C:\Source\CordysExam_LocalApp\CordysExam_ProductSalesAdmin\CordysExam_ProductSalesAdmin\obj\Debug\net8.0-windows\CordysExam_ProductSalesAdmin.Properties.Resources.resources
+C:\Source\CordysExam_LocalApp\CordysExam_ProductSalesAdmin\CordysExam_ProductSalesAdmin\obj\Debug\net8.0-windows\CordysExam_ProductSalesAdmin.SaleForm.resources
+C:\Source\CordysExam_LocalApp\CordysExam_ProductSalesAdmin\CordysExam_ProductSalesAdmin\obj\Debug\net8.0-windows\CordysExam_ProductSalesAdmin.StoreForm.resources

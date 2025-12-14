@@ -34,21 +34,31 @@
             btnRefreshProduct = new Button();
             btnDeleteProduct = new Button();
             btnEditProduct = new Button();
-            btn_AddProduct = new Button();
+            btnAddProduct = new Button();
             productsGrid = new DataGridView();
             tabSales = new TabPage();
             panel2 = new Panel();
+            btnRefreshSales = new Button();
+            btnDeleteSale = new Button();
+            btnEditSale = new Button();
+            btnAddSale = new Button();
             salesGrid = new DataGridView();
             tabStores = new TabPage();
             panel1 = new Panel();
+            btnRefreshStores = new Button();
+            btnDeleteStore = new Button();
+            btnEditStore = new Button();
+            btnAddStore = new Button();
             storesGrid = new DataGridView();
             tabControl1.SuspendLayout();
             tabProducts.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)productsGrid).BeginInit();
             tabSales.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)salesGrid).BeginInit();
             tabStores.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)storesGrid).BeginInit();
             SuspendLayout();
             // 
@@ -57,10 +67,11 @@
             tabControl1.Controls.Add(tabProducts);
             tabControl1.Controls.Add(tabSales);
             tabControl1.Controls.Add(tabStores);
-            tabControl1.Location = new Point(12, 12);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(776, 337);
+            tabControl1.Size = new Size(1057, 450);
             tabControl1.TabIndex = 0;
             // 
             // tabProducts
@@ -70,7 +81,7 @@
             tabProducts.Location = new Point(4, 24);
             tabProducts.Name = "tabProducts";
             tabProducts.Padding = new Padding(3);
-            tabProducts.Size = new Size(768, 309);
+            tabProducts.Size = new Size(1049, 422);
             tabProducts.TabIndex = 0;
             tabProducts.Text = "Products";
             tabProducts.UseVisualStyleBackColor = true;
@@ -81,11 +92,11 @@
             panel3.Controls.Add(btnRefreshProduct);
             panel3.Controls.Add(btnDeleteProduct);
             panel3.Controls.Add(btnEditProduct);
-            panel3.Controls.Add(btn_AddProduct);
+            panel3.Controls.Add(btnAddProduct);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(3, 277);
+            panel3.Location = new Point(3, 390);
             panel3.Name = "panel3";
-            panel3.Size = new Size(762, 29);
+            panel3.Size = new Size(1043, 29);
             panel3.TabIndex = 2;
             // 
             // btnRefreshProduct
@@ -96,6 +107,7 @@
             btnRefreshProduct.TabIndex = 3;
             btnRefreshProduct.Text = "Refresh";
             btnRefreshProduct.UseVisualStyleBackColor = true;
+            btnRefreshProduct.Click += btnRefreshProducts_Click;
             // 
             // btnDeleteProduct
             // 
@@ -105,6 +117,7 @@
             btnDeleteProduct.TabIndex = 2;
             btnDeleteProduct.Text = "Delete";
             btnDeleteProduct.UseVisualStyleBackColor = true;
+            btnDeleteProduct.Click += btnDeleteProduct_Click;
             // 
             // btnEditProduct
             // 
@@ -114,15 +127,17 @@
             btnEditProduct.TabIndex = 1;
             btnEditProduct.Text = "Edit";
             btnEditProduct.UseVisualStyleBackColor = true;
+            btnEditProduct.Click += btnEditProduct_Click;
             // 
-            // btn_AddProduct
+            // btnAddProduct
             // 
-            btn_AddProduct.Location = new Point(3, 3);
-            btn_AddProduct.Name = "btn_AddProduct";
-            btn_AddProduct.Size = new Size(75, 23);
-            btn_AddProduct.TabIndex = 0;
-            btn_AddProduct.Text = "Add";
-            btn_AddProduct.UseVisualStyleBackColor = true;
+            btnAddProduct.Location = new Point(3, 3);
+            btnAddProduct.Name = "btnAddProduct";
+            btnAddProduct.Size = new Size(75, 23);
+            btnAddProduct.TabIndex = 0;
+            btnAddProduct.Text = "Add";
+            btnAddProduct.UseVisualStyleBackColor = true;
+            btnAddProduct.Click += btnAddProduct_Click;
             // 
             // productsGrid
             // 
@@ -135,7 +150,7 @@
             productsGrid.Name = "productsGrid";
             productsGrid.ReadOnly = true;
             productsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            productsGrid.Size = new Size(762, 303);
+            productsGrid.Size = new Size(1043, 416);
             productsGrid.TabIndex = 1;
             // 
             // tabSales
@@ -145,18 +160,63 @@
             tabSales.Location = new Point(4, 24);
             tabSales.Name = "tabSales";
             tabSales.Padding = new Padding(3);
-            tabSales.Size = new Size(768, 309);
+            tabSales.Size = new Size(1049, 422);
             tabSales.TabIndex = 1;
             tabSales.Text = "Sales";
             tabSales.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
+            panel2.AutoSize = true;
+            panel2.Controls.Add(btnRefreshSales);
+            panel2.Controls.Add(btnDeleteSale);
+            panel2.Controls.Add(btnEditSale);
+            panel2.Controls.Add(btnAddSale);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(3, 261);
+            panel2.Location = new Point(3, 390);
             panel2.Name = "panel2";
-            panel2.Size = new Size(762, 45);
-            panel2.TabIndex = 2;
+            panel2.Size = new Size(1043, 29);
+            panel2.TabIndex = 3;
+            // 
+            // btnRefreshSales
+            // 
+            btnRefreshSales.Location = new Point(246, 3);
+            btnRefreshSales.Name = "btnRefreshSales";
+            btnRefreshSales.Size = new Size(75, 23);
+            btnRefreshSales.TabIndex = 3;
+            btnRefreshSales.Text = "Refresh";
+            btnRefreshSales.UseVisualStyleBackColor = true;
+            btnRefreshSales.Click += btnRefreshSales_Click;
+            // 
+            // btnDeleteSale
+            // 
+            btnDeleteSale.Location = new Point(165, 3);
+            btnDeleteSale.Name = "btnDeleteSale";
+            btnDeleteSale.Size = new Size(75, 23);
+            btnDeleteSale.TabIndex = 2;
+            btnDeleteSale.Text = "Delete";
+            btnDeleteSale.UseVisualStyleBackColor = true;
+            btnDeleteSale.Click += btnDeleteSale_Click;
+            // 
+            // btnEditSale
+            // 
+            btnEditSale.Location = new Point(84, 3);
+            btnEditSale.Name = "btnEditSale";
+            btnEditSale.Size = new Size(75, 23);
+            btnEditSale.TabIndex = 1;
+            btnEditSale.Text = "Edit";
+            btnEditSale.UseVisualStyleBackColor = true;
+            btnEditSale.Click += btnEditSale_Click;
+            // 
+            // btnAddSale
+            // 
+            btnAddSale.Location = new Point(3, 3);
+            btnAddSale.Name = "btnAddSale";
+            btnAddSale.Size = new Size(75, 23);
+            btnAddSale.TabIndex = 0;
+            btnAddSale.Text = "Add";
+            btnAddSale.UseVisualStyleBackColor = true;
+            btnAddSale.Click += btnAddSale_Click;
             // 
             // salesGrid
             // 
@@ -169,7 +229,7 @@
             salesGrid.Name = "salesGrid";
             salesGrid.ReadOnly = true;
             salesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            salesGrid.Size = new Size(762, 303);
+            salesGrid.Size = new Size(1043, 416);
             salesGrid.TabIndex = 1;
             // 
             // tabStores
@@ -178,18 +238,63 @@
             tabStores.Controls.Add(storesGrid);
             tabStores.Location = new Point(4, 24);
             tabStores.Name = "tabStores";
-            tabStores.Size = new Size(768, 309);
+            tabStores.Size = new Size(1049, 422);
             tabStores.TabIndex = 2;
             tabStores.Text = "Stores";
             tabStores.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
+            panel1.AutoSize = true;
+            panel1.Controls.Add(btnRefreshStores);
+            panel1.Controls.Add(btnDeleteStore);
+            panel1.Controls.Add(btnEditStore);
+            panel1.Controls.Add(btnAddStore);
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 264);
+            panel1.Location = new Point(0, 393);
             panel1.Name = "panel1";
-            panel1.Size = new Size(768, 45);
-            panel1.TabIndex = 1;
+            panel1.Size = new Size(1049, 29);
+            panel1.TabIndex = 3;
+            // 
+            // btnRefreshStores
+            // 
+            btnRefreshStores.Location = new Point(246, 3);
+            btnRefreshStores.Name = "btnRefreshStores";
+            btnRefreshStores.Size = new Size(75, 23);
+            btnRefreshStores.TabIndex = 3;
+            btnRefreshStores.Text = "Refresh";
+            btnRefreshStores.UseVisualStyleBackColor = true;
+            btnRefreshStores.Click += btnRefreshStores_Click;
+            // 
+            // btnDeleteStore
+            // 
+            btnDeleteStore.Location = new Point(165, 3);
+            btnDeleteStore.Name = "btnDeleteStore";
+            btnDeleteStore.Size = new Size(75, 23);
+            btnDeleteStore.TabIndex = 2;
+            btnDeleteStore.Text = "Delete";
+            btnDeleteStore.UseVisualStyleBackColor = true;
+            btnDeleteStore.Click += btnDeleteStore_Click;
+            // 
+            // btnEditStore
+            // 
+            btnEditStore.Location = new Point(84, 3);
+            btnEditStore.Name = "btnEditStore";
+            btnEditStore.Size = new Size(75, 23);
+            btnEditStore.TabIndex = 1;
+            btnEditStore.Text = "Edit";
+            btnEditStore.UseVisualStyleBackColor = true;
+            btnEditStore.Click += btnEditStore_Click;
+            // 
+            // btnAddStore
+            // 
+            btnAddStore.Location = new Point(3, 3);
+            btnAddStore.Name = "btnAddStore";
+            btnAddStore.Size = new Size(75, 23);
+            btnAddStore.TabIndex = 0;
+            btnAddStore.Text = "Add";
+            btnAddStore.UseVisualStyleBackColor = true;
+            btnAddStore.Click += btnAddStore_Click;
             // 
             // storesGrid
             // 
@@ -202,7 +307,7 @@
             storesGrid.Name = "storesGrid";
             storesGrid.ReadOnly = true;
             storesGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            storesGrid.Size = new Size(768, 309);
+            storesGrid.Size = new Size(1049, 422);
             storesGrid.TabIndex = 1;
             // 
             // MainForm
@@ -212,7 +317,8 @@
             ClientSize = new Size(1057, 450);
             Controls.Add(tabControl1);
             Name = "MainForm";
-            Text = "Cordys Exam - Local Suite";
+            Text = "Cordys Exam - Admin Suite";
+            WindowState = FormWindowState.Maximized;
             Load += MainForm_Load;
             tabControl1.ResumeLayout(false);
             tabProducts.ResumeLayout(false);
@@ -220,8 +326,12 @@
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)productsGrid).EndInit();
             tabSales.ResumeLayout(false);
+            tabSales.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)salesGrid).EndInit();
             tabStores.ResumeLayout(false);
+            tabStores.PerformLayout();
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)storesGrid).EndInit();
             ResumeLayout(false);
         }
@@ -232,15 +342,23 @@
         private TabPage tabProducts;
         private TabPage tabSales;
         private TabPage tabStores;
-        private Panel panel1;
         private DataGridView productsGrid;
-        private Panel panel2;
         private DataGridView salesGrid;
         private DataGridView storesGrid;
         private Panel panel3;
         private Button btnRefreshProduct;
         private Button btnDeleteProduct;
         private Button btnEditProduct;
-        private Button btn_AddProduct;
+        private Button btnAddProduct;
+        private Panel panel2;
+        private Button btnRefreshSales;
+        private Button btnDeleteSale;
+        private Button btnEditSale;
+        private Button btnAddSale;
+        private Panel panel1;
+        private Button btnRefreshStores;
+        private Button btnDeleteStore;
+        private Button btnEditStore;
+        private Button btnAddStore;
     }
 }

@@ -17,13 +17,142 @@ namespace CordysExam_ProductSalesAdmin
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadProducts();
+            LoadStores();
+            LoadSales();
         }
 
         private void LoadProducts()
         {
             using var db = new AppDbContext();
+
+            productsGrid.AutoGenerateColumns = false;
+            productsGrid.Columns.Clear();
+
+            productsGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "ProductId",
+                HeaderText = "ID",
+                ReadOnly = true
+            });
+
+            productsGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Description",
+                HeaderText = "Product"
+            });
+
+            productsGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Price",
+                HeaderText = "Price",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" } // Currency
+            });
+
             productsGrid.DataSource = db.Products.ToList();
         }
+
+
+
+        private void LoadStores()
+        {
+            using var db = new AppDbContext();
+
+            storesGrid.AutoGenerateColumns = false;
+            storesGrid.Columns.Clear();
+
+            storesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "StoreID",
+                HeaderText = "ID",
+                ReadOnly = true
+            });
+
+            storesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Name",
+                HeaderText = "Store Name"
+            });
+
+            storesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Address",
+                HeaderText = "Address"
+            });
+
+            storesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Tel",
+                HeaderText = "Telephone"
+            });
+
+            storesGrid.DataSource = db.Stores.ToList();
+        }
+
+
+
+        private void LoadSales()
+        {
+            using var db = new AppDbContext();
+
+            salesGrid.AutoGenerateColumns = false;
+            salesGrid.Columns.Clear();
+
+            var salesList = db.ProductSales
+                .Include(s => s.Product)
+                .Include(s => s.Store)
+                .ToList();
+
+            salesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "SaleID",
+                HeaderText = "ID",
+                ReadOnly = true
+            });
+
+            // Display product name
+            var productCol = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Product",
+                ReadOnly = true
+            };
+            salesGrid.Columns.Add(productCol);
+
+            // Display store name
+            var storeCol = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Store",
+                ReadOnly = true
+            };
+            salesGrid.Columns.Add(storeCol);
+
+            salesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "SaleDate",
+                HeaderText = "Date"
+            });
+
+            salesGrid.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Quantity",
+                HeaderText = "Quantity"
+            });
+
+            salesGrid.DataSource = salesList;
+
+            // Fill Product & Store columns
+            salesGrid.CellFormatting += (s, e) =>
+            {
+                if (salesGrid.Columns[e.ColumnIndex].HeaderText == "Product")
+                    e.Value = salesList[e.RowIndex].Product.Description;
+
+                if (salesGrid.Columns[e.ColumnIndex].HeaderText == "Store")
+                    e.Value = salesList[e.RowIndex].Store.Name;
+            };
+        }
+
+
+
+
         #endregion
 
         #region Product Buttons
@@ -70,6 +199,21 @@ namespace CordysExam_ProductSalesAdmin
 
             var product = (Product)productsGrid.CurrentRow.DataBoundItem;
 
+            using var db = new AppDbContext();
+            bool hasSales = db.ProductSales.Any(s => s.ProductId == product.ProductId);
+
+            if (hasSales)
+            {
+                MessageBox.Show
+                (
+                    "Cannot delete this product because it has sales records.",
+                    "Attention",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
             var confirm = MessageBox.Show(
                 "Are you sure you want to delete this product?",
                 "Confirm Delete",
@@ -78,12 +222,12 @@ namespace CordysExam_ProductSalesAdmin
 
             if (confirm == DialogResult.Yes)
             {
-                using var db = new AppDbContext();
                 db.Products.Remove(product);
                 db.SaveChanges();
                 LoadProducts();
             }
         }
+
 
         private void btnRefreshProducts_Click(object sender, EventArgs e)
         {
@@ -92,5 +236,144 @@ namespace CordysExam_ProductSalesAdmin
 
         #endregion
 
+        #region Stores Buttons
+        private void btnAddStore_Click(object sender, EventArgs e)
+        {
+            var form = new StoreForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                using var db = new AppDbContext();
+                db.Stores.Add(form.Store);
+                db.SaveChanges();
+                LoadStores();
+            }
+        }
+
+        private void btnEditStore_Click(object sender, EventArgs e)
+        {
+            if (storesGrid.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a store first.");
+                return;
+            }
+
+            var store = (Store)storesGrid.CurrentRow.DataBoundItem;
+            var form = new StoreForm(store);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                using var db = new AppDbContext();
+
+                // Attach the edited entity and mark as modified
+                db.Stores.Attach(form.Store);
+                db.Entry(form.Store).State = EntityState.Modified;
+
+                db.SaveChanges();
+                LoadStores();
+            }
+        }
+
+
+
+        private void btnDeleteStore_Click(object sender, EventArgs e)
+        {
+            if (storesGrid.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a store first.");
+                return;
+            }
+
+            var store = (Store)storesGrid.CurrentRow.DataBoundItem;
+            var confirm = MessageBox.Show(
+                "Are you sure you want to delete this store?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                using var db = new AppDbContext();
+                db.Stores.Remove(store);
+                db.SaveChanges();
+                LoadStores();
+            }
+        }
+
+        private void btnRefreshStores_Click(object sender, EventArgs e)
+        {
+            LoadStores();
+        }
+
+
+        #endregion
+
+        #region Sales Buttons
+        private void btnAddSale_Click(object sender, EventArgs e)
+        {
+            var form = new SaleForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                using var db = new AppDbContext();
+                db.ProductSales.Add(form.ProductSale);
+                db.SaveChanges();
+                LoadSales();
+            }
+        }
+
+        private void btnEditSale_Click(object sender, EventArgs e)
+        {
+            if (salesGrid.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a sale first.");
+                return;
+            }
+
+            var sale = (ProductSale)salesGrid.CurrentRow.DataBoundItem;
+            var form = new SaleForm(sale);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                using var db = new AppDbContext();
+
+                // Attach the edited entity and mark as modified
+                db.ProductSales.Attach(form.ProductSale);
+                db.Entry(form.ProductSale).State = EntityState.Modified;
+
+                db.SaveChanges();
+                LoadSales();
+            }
+        }
+
+
+        private void btnDeleteSale_Click(object sender, EventArgs e)
+        {
+            if (salesGrid.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a sale first.");
+                return;
+            }
+
+            var sale = (ProductSale)salesGrid.CurrentRow.DataBoundItem;
+            var confirm = MessageBox.Show(
+                "Are you sure you want to delete this sale?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                using var db = new AppDbContext();
+                db.ProductSales.Remove(sale);
+                db.SaveChanges();
+                LoadSales();
+            }
+        }
+
+        private void btnRefreshSales_Click(object sender, EventArgs e)
+        {
+            LoadSales();
+        }
+
+        #endregion
     }
 }
