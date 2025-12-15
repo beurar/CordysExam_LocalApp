@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "smpXoTKmU6k=",
+  "dgSpecHash": "HPAA+Cyetuc=",
   "success": true,
-  "projectFilePath": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin.csproj",
+  "projectFilePath": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\CordysExam_AdminApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\beura\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\beura\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

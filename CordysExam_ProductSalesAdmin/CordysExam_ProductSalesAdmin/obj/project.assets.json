@@ -4022,9 +4022,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin.csproj",
-      "projectName": "CordysExam_ProductSalesAdmin",
-      "projectPath": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin.csproj",
+      "projectUniqueName": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\CordysExam_AdminApp.csproj",
+      "projectName": "CordysExam_AdminApp",
+      "projectPath": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\CordysExam_AdminApp.csproj",
       "packagesPath": "C:\\Users\\beura\\.nuget\\packages\\",
       "outputPath": "C:\\Source\\CordysExam_LocalApp\\CordysExam_ProductSalesAdmin\\CordysExam_ProductSalesAdmin\\obj\\",
       "projectStyle": "PackageReference",
